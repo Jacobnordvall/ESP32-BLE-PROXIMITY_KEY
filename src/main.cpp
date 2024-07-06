@@ -184,15 +184,19 @@ void ProximityCheckup(bool ConnectionFound)
  if(ConnectionFound)
  {
    TriesSincePairedFound = 0;
-   digitalWrite(RELAY_PIN, HIGH); 
+   digitalWrite(RELAY_PIN, HIGH);
 
    if(CHECK_ONCE)
    {
      Serial.println("Going night night, job done");
      esp_bt_controller_disable();
      esp_bt_controller_deinit();   
+
+     gpio_deep_sleep_hold_en();
+     gpio_hold_en((gpio_num_t) RELAY_PIN); 
+
      delay(1000);
-     esp_light_sleep_start();        
+     esp_light_sleep_start();
    }
  }
  else if (!CHECK_ONCE)
