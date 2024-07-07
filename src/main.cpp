@@ -240,8 +240,6 @@ void setup() {
   BLEDevice::setSecurityCallbacks(new MySecurityCallbacks());
   pServer->setCallbacks(new MyServerCallbacks());
   Serial.println("BLE Server callbacks set");
-  Serial.println("");
-  Serial.println(""); 
    
   // Create the BLE Service
   BLEService *pService = pServer->createService(SERVICE_UUID);
@@ -271,6 +269,7 @@ void setup() {
   pAdvertising->setMinPreferred(0x12);  // Adjusted advertising interval max (7.5ms * 0x12)
   BLEDevice::startAdvertising();
   Serial.println("Waiting for a client connection to notify...");
+  Serial.println("");
 
   // Security aka pin to enter on device
   BLESecurity *pSecurity = new BLESecurity();
@@ -278,6 +277,27 @@ void setup() {
   pSecurity->setAuthenticationMode(ESP_LE_AUTH_BOND); //! 'ESP_LE_AUTH_REQ_SC_ONLY' Makes phone hidden for scans
 
   Serial.println("Set up complete");
+  Serial.println("--------------------");
+  Serial.println("");
+ 
+  //set the cpu speed if user defined one.
+  if(CPU_MHZ != 0)
+  {setCpuFrequencyMhz(CPU_MHZ);}  
+
+  //print frequencies
+  Serial.println("Specs:");
+  uint32_t Freq = getCpuFrequencyMhz();
+  Serial.print("CPU Freq = ");
+  Serial.print(Freq);
+  Serial.println(" MHz");
+  Freq = getXtalFrequencyMhz();
+  Serial.print("XTAL Freq = ");
+  Serial.print(Freq);
+  Serial.println(" MHz");
+  Freq = getApbFrequency();
+  Serial.print("APB Freq = ");
+  Serial.print(Freq);
+  Serial.println(" Hz");
   Serial.println("--------------------");
   Serial.println("");
 }
@@ -345,10 +365,8 @@ void loop() {
         { 
           foundThisScan[i] = false;
         }     
-      }
-     
-      
- 
+      }   
+       
       // Check if the array contains at least one true value      
       if (containsTrue(foundThisScan, 50)) { 
         ProximityCheckup(true); }   

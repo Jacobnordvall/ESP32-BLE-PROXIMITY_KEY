@@ -23,6 +23,7 @@
 | `BLE_ACTIVE_SCAN`   Bool    | Active scan uses more power, but get results faster|
 | `CHECK_ONCE`        Bool    | stops when paired device found: BLE off, Light sleep to only keep relay pin powered.|
 | `RELAY_PIN `        Int     | GPIO pin that gets triggered when a device is found & accepted|
+| `CPU_MHZ `          Int     | Set desiered clock speed. 0 = Board default. BLE will NOT FUNCTION bellow 80mhz|
 
 Check Config.h if this list is confusing. its neater there and its more obvious how it works.
 

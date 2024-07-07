@@ -33,6 +33,7 @@
     #define CHECK_ONCE false //stops when paired device found: BLE off, Light sleep to only keep relay pin powered.
     #define RELAY_PIN 22 // GPIO pin that gets triggered when device found. (Could be useful to have this be the led pin)
 
+    #define CPU_MHZ 0 //set your desired cpu speed. 0 = board default. //!BLE will NOT FUNCTION bellow 80mhz
 
     // Wiring the relay:
     //   
