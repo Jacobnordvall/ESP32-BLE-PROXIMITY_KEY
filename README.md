@@ -3,7 +3,7 @@
  
  Turn your esp32 into a ble proximity sensor.
 
- Pair your phone or define hardcoded ble addresses.
+ Pair your phone and/or define hardcoded ble addresses.
 
 
 
